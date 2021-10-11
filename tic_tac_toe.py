@@ -1,8 +1,9 @@
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
-    board = []
+    board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
+    
     return board
-
+init_board()
 
 def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
@@ -33,7 +34,9 @@ def is_full(board):
 
 def print_board(board):
     """Prints a 3-by-3 board on the screen with borders."""
-    pass
+    print(board[0][0] + board[0][1] + board[0][2])
+    print(board[1][0] + board[1][1] + board[1][2])
+    print(board[2][0] + board[2][1] + board[2][2])
 
 
 def print_result(winner):
