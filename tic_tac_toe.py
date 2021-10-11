@@ -58,6 +58,15 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
 
 def main_menu():
     tictactoe_game('HUMAN-HUMAN')
+     # grafika
+    # human-human
+    # human -Ai
+    # human - AI PRO
+    # AI- AI
+    #quit
+
+    # input('Select a game mode!')
+    # valid input?
 
 
 if __name__ == '__main__':
