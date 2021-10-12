@@ -9,26 +9,24 @@ def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
     move = input("Please make a move!")
     if move == "A1":
-        move(a,b) = 0,0
-        board[a][b]
-        return move
+        row, col = 0, 0
     elif move == "A2":
-        move = board[0][1]
+        row, col = 0, 1
     elif move == "A3":
-        move = board[0][2]
+        row, col = 0, 2
     elif move == "B1":
-        move = board[1][0]
+        row, col = 1, 0
     elif move == "B2":
-        move = board[1][1]
+        row, col = 1, 1
     elif move == "B3":
-        move = board[1][2]
+        row, col = 1, 2
     elif move == "C1":
-        move = board[2][0]
+        row, col = 2, 0
     elif move == "C2":
-        move = board[2][1]
+        row, col = 2, 1
     elif move == "C3":
-        move = board[2][2]
-    return move
+        row, col = 2, 2
+    return row, col
 
 
 def get_ai_move(board, player):
@@ -37,13 +35,9 @@ def get_ai_move(board, player):
     return row, col
 
 
-def mark(board, player):
-    move = get_move(board)
-    
-    print(move)
-    move = player
-    print(move)
-    print(board)
+def mark(board, player, row, col):
+    board[row][col] = player
+    print_board(board)
 
 
 def has_won(board, player):
@@ -63,14 +57,15 @@ def has_won(board, player):
         winner = player
     elif board[0][2] and board[1][1] and board[2][0] == player:
         winner = player
+        
     else:
         return False
     
-    print(f'Player {winner} has won the game')
-
+    
 
 def is_full(board):
     if board[0][0] and board[0][1] and board[0][2] and board[1][0] and board[1][1] and board[1][2] and board[2][0] and board[2][1] and board[2][2] != '.':
+        print('Tie game, GAME OVER!')
         return True
     else:
         return False
@@ -88,14 +83,11 @@ def print_board(board):
 
 
 def print_result(winner):
-    """Congratulates winner or proclaims tie (if winner equals zero)."""
-    pass
+    print(f'Player {winner} has won the game')
 
 
 def change_player(player):
     if player == 'X':
-        # move = get_move(board)
-        # move = "x"
         player = 'O'
     else:
         player = 'X'
@@ -105,10 +97,12 @@ def tictactoe_game(mode):
     board = init_board()
     player = 'X'
     printed_board = print_board(board)
-    
-
-    mark(board, player)
-    print_board(board)
+    while is_full(board) is False and has_won(board, player) is False:
+        row, col = get_move(board, player)
+        mark(board, player, row, col)
+        player = change_player(player)
+    else:
+        print_result(winner)
     # winner = 0
     # print_result(winner)
 
