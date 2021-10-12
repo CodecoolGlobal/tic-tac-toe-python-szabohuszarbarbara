@@ -6,14 +6,28 @@ def init_board():
     return board
 
 
-def quit():
-    pass
 
 def get_move(board, player):
-    move = input('PLease make a move!', )
-    row, col = 0, 0
-    move = row, col
-    return move
+    """Returns the coordinates of a valid move for player on board."""
+    move = input("Please make a move!")
+    if move == "A1":
+        return board[0][0]
+    elif move == "A2":
+        return board[0][1]
+    elif move == "A3":
+        return board[0][2]
+    elif move == "B1":
+        return board[1][0]
+    elif move == "B2":
+        return board[1][1]
+    elif move == "B3":
+        return board[1][2]
+    elif move == "C1":
+        return board[2][0]
+    elif move == "C2":
+        return board[2][1]
+    elif move == "C3":
+        return board[2][2]
 
 
 def get_ai_move(board, player):
