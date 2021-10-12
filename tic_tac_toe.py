@@ -13,21 +13,22 @@ def get_move(board, player):
         board[a][b]
         return move
     elif move == "A2":
-        return board[0][1]
+        move = board[0][1]
     elif move == "A3":
-        return board[0][2]
+        move = board[0][2]
     elif move == "B1":
-        return board[1][0]
+        move = board[1][0]
     elif move == "B2":
-        return board[1][1]
+        move = board[1][1]
     elif move == "B3":
-        return board[1][2]
+        move = board[1][2]
     elif move == "C1":
-        return board[2][0]
+        move = board[2][0]
     elif move == "C2":
-        return board[2][1]
+        move = board[2][1]
     elif move == "C3":
-        return board[2][2]
+        move = board[2][2]
+    return move
 
 
 def get_ai_move(board, player):
@@ -36,10 +37,13 @@ def get_ai_move(board, player):
     return row, col
 
 
-def mark(board, player, move):
-    # mark = 
-    print()
-    pass
+def mark(board, player):
+    move = get_move(board)
+    
+    print(move)
+    move = player
+    print(move)
+    print(board)
 
 
 def has_won(board, player):
@@ -90,6 +94,8 @@ def print_result(winner):
 
 def change_player(player):
     if player == 'X':
+        # move = get_move(board)
+        # move = "x"
         player = 'O'
     else:
         player = 'X'
@@ -98,13 +104,13 @@ def change_player(player):
 def tictactoe_game(mode):
     board = init_board()
     player = 'X'
-    # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
-    print_board(board)
-     = get_move(board, player)
-    mark(board, player, row, col)
+    printed_board = print_board(board)
+    
 
-    winner = 0
-    print_result(winner)
+    mark(board, player)
+    print_board(board)
+    # winner = 0
+    # print_result(winner)
 
 def add_game_mode():
     game_mode = input('''Select a game mode!
