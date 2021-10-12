@@ -4,15 +4,16 @@ def init_board():
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
     
     return board
-init_board()
+
 
 def quit():
     pass
 
 def get_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
+    move = input('PLease make a move!', )
     row, col = 0, 0
-    return row, col
+    move = row, col
+    return move
 
 
 def get_ai_move(board, player):
@@ -32,8 +33,10 @@ def has_won(board, player):
 
 
 def is_full(board):
-    """Returns True if board is full."""
-    return False
+    if board[0][0] and board[0][1] and board[0][2] and board[1][0] and board[1][1] and board[1][2] and board[2][0] and board[2][1] and board[2][2] != '.':
+        return True
+    else:
+        return False
 
 
 def print_board(board):
@@ -52,14 +55,20 @@ def print_result(winner):
     pass
 
 
+def change_player(player):
+    if player == 'X':
+        player = 'O'
+    else:
+        player = 'X'
+
+
 def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
-    
-
+    player = 'X'
     # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
     print_board(board)
-    row, col = get_move(board, 1)
-    mark(board, 1, row, col)
+    row, col = get_move(board, player)
+    mark(board, player, row, col)
 
     winner = 0
     print_result(winner)
