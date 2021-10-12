@@ -5,6 +5,9 @@ def init_board():
     return board
 init_board()
 
+def quit():
+    pass
+
 def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
     row, col = 0, 0
@@ -55,18 +58,41 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
     winner = 0
     print_result(winner)
 
+def add_game_mode():
+    game_mode = input('''Select a game mode!
+
+    Press 1 for HUMAN - HUMAN
+    Press 2 for HUMAN - AI
+    Press 3 for HUMAN - AI PRO
+    Press 4 for AI -AI
+    
+    For qutting the game type 'Q'
+    ''')
+    return game_mode
+    
 
 def main_menu():
-    tictactoe_game('HUMAN-HUMAN')
+    print('WELCOME TO TIC TAC TOE by THE FRESHMINT TEAM')
      # grafika
-    # human-human
-    # human -Ai
-    # human - AI PRO
-    # AI- AI
-    #quit
+    mode = add_game_mode()
+    valid_input_mode(mode)
+ 
 
-    # input('Select a game mode!')
-    # valid input?
+def valid_input_mode(game_mode):
+    if game_mode not in '1234Qq':
+        print('INVALID INPUT!')
+        add_game_mode()
+    else:
+        if game_mode == 1:
+            tictactoe_game('HUMAN-HUMAN')
+        elif game_mode == 2:
+            tictactoe_game('HUMAN-AI')
+        elif game_mode == 3:
+            tictactoe_game('HUMAN-AI PRO')
+        elif game_mode == 4:
+            tictactoe_game('AI-AI')
+        elif game_mode == 'Q' or 'q':
+            quit()
 
 
 if __name__ == '__main__':
