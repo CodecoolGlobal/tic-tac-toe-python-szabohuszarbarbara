@@ -1,4 +1,3 @@
-import random
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
@@ -9,26 +8,26 @@ def init_board():
 
 def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
-    move = input("Please make a move!")
-    if move == "A1":
-        return board[0][0]
-    elif move == "A2":
-        return board[0][1]
-    elif move == "A3":
-        return board[0][2]
-    elif move == "B1":
-        return board[1][0]
-    elif move == "B2":
-        return board[1][1]
-    elif move == "B3":
-        return board[1][2]
-    elif move == "C1":
-        return board[2][0]
-    elif move == "C2":
-        return board[2][1]
-    elif move == "C3":
-        return board[2][2]
-
+    move_input = input("Please make a move!")
+    if move_input == "A1":
+        move = board[0][0]
+    elif move_input == "A2":
+        move = board[0][1]
+    elif move_input == "A3":
+        move = board[0][2]
+    elif move_input == "B1":
+        move = board[1][0]
+    elif move_input == "B2":
+        move = board[1][1]
+    elif move_input == "B3":
+        move = board[1][2]
+    elif move_input == "C1":
+        move = board[2][0]
+    elif move_input == "C2":
+        move = board[2][1]
+    elif move_input == "C3":
+        move = board[2][2]
+    return move
 
 def get_ai_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
@@ -36,9 +35,12 @@ def get_ai_move(board, player):
     return row, col
 
 
-def mark(board, player, row, col):
-    """Marks the element at row & col on the board for player."""
-    pass
+def mark(board, player):
+    board = init_board()
+    move = get_move(board, player)
+    move = player
+    return board
+        
 
 
 def has_won(board, player):
@@ -76,13 +78,14 @@ def change_player(player):
         player = 'X'
 
 
-def tictactoe_game(mode='HUMAN-HUMAN'):
+def tictactoe_game(mode):
     board = init_board()
     player = 'X'
     # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
     print_board(board)
-    row, col = get_move(board, player)
-    mark(board, player, row, col)
+    move = get_move(board, player)
+    mark(board, "X")
+    print_board(board)
 
     winner = 0
     print_result(winner)
@@ -112,13 +115,13 @@ def valid_input_mode(game_mode):
         print('INVALID INPUT!')
         add_game_mode()
     else:
-        if game_mode == 1:
+        if game_mode == "1":
             tictactoe_game('HUMAN-HUMAN')
-        elif game_mode == 2:
+        elif game_mode == "2":
             tictactoe_game('HUMAN-AI')
-        elif game_mode == 3:
+        elif game_mode == "3":
             tictactoe_game('HUMAN-AI PRO')
-        elif game_mode == 4:
+        elif game_mode == "4":
             tictactoe_game('AI-AI')
         elif game_mode == 'Q' or 'q':
             quit()
