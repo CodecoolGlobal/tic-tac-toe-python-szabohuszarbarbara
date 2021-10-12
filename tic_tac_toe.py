@@ -1,3 +1,4 @@
+import random
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
@@ -34,9 +35,13 @@ def is_full(board):
 
 def print_board(board):
     """Prints a 3-by-3 board on the screen with borders."""
-    print(board[0][0] + board[0][1] + board[0][2])
-    print(board[1][0] + board[1][1] + board[1][2])
-    print(board[2][0] + board[2][1] + board[2][2])
+    print(f"""
+       1   2   3
+    A  {board[0][0]} | {board[0][1]} | {board[0][2]}
+      ---+---+---
+    B  {board[1][0]} | {board[1][1]} | {board[1][2]}
+      ---+---+---
+    C  {board[2][0]} | {board[2][1]} | {board[2][2]}\n""")
 
 
 def print_result(winner):
@@ -46,6 +51,7 @@ def print_result(winner):
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
+    
 
     # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
     print_board(board)
