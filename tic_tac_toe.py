@@ -9,7 +9,7 @@ def is_full(board):
     else:
         return False
 
-#def moveValidation():
+def moveValidation():
     # ez így még nem tetszik
     move = input("Please make a move!").upper()
     for i in move:
@@ -124,7 +124,6 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
     print_board(board)
     player = 'X'
     while not is_full(board) or not has_won(board, player):
-        #get_move(board, player)
         mark(board, player)
         print_board(board)
         if player == 'X':
