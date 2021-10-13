@@ -9,7 +9,7 @@ def is_full(board):
     else:
         return False
 
-def moveValidation():
+#def moveValidation():
     # ez így még nem tetszik
     move = input("Please make a move!").upper()
     for i in move:
@@ -24,7 +24,6 @@ def get_move(board, player):
     a = 0
     b = 0
     if move == "A1":
-<<<<<<< HEAD
         a = 0
         b = 0
     elif move == "A2":
@@ -52,26 +51,6 @@ def get_move(board, player):
         a = 2
         b = 2
     return a,b
-=======
-        row, col = 0, 0
-    elif move == "A2":
-        row, col = 0, 1
-    elif move == "A3":
-        row, col = 0, 2
-    elif move == "B1":
-        row, col = 1, 0
-    elif move == "B2":
-        row, col = 1, 1
-    elif move == "B3":
-        row, col = 1, 2
-    elif move == "C1":
-        row, col = 2, 0
-    elif move == "C2":
-        row, col = 2, 1
-    elif move == "C3":
-        row, col = 2, 2
-    return row, col
->>>>>>> a806abc6126938cb130ade3d82afd6f51a7769df
 
 
 def get_ai_move(board, player):
@@ -80,85 +59,48 @@ def get_ai_move(board, player):
     return row, col
 
 
-<<<<<<< HEAD
 def mark(board, player):
     x,y = get_move(board, player)    
     board[x][y] = player
 
 
 def has_won(board, player):
-    if board[0][0] and board[0][1] and board[0][2] == 'X':
+    if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == 'X':
         winner = 'X'
-    elif board[0][0] and board[0][1] and board[0][2] == 'O':
+    elif board[0][0] == 'O' and board[0][1] == 'O' and board[0][2] == 'O':
         winner = 'O'    
-    elif board[1][0] and board[1][1] and board[1][2] == 'X':
+    elif board[1][0] == 'X' and board[1][1] == 'X' and board[1][2] == 'X':
         winner = 'X'
-    elif board[1][0] and board[1][1] and board[1][2] == 'O':
+    elif board[1][0] == 'O' and board[1][1] == 'O' and board[1][2] == 'O':
         winner = 'O'
-    elif board[2][0] and board[2][1] and board[2][2] == 'X':
+    elif board[2][0] == 'X' and board[2][1] == 'X' and board[2][2] == 'X':
         winner = 'X'
     elif board[2][0] and board[2][1] and board[2][2] == 'O':
         winner = 'O'
-    elif board[0][0] and board[1][0] and board[2][0] == 'X':
+    elif board[0][0] == 'X' and board[1][0] == 'X' and board[2][0] == 'X':
         winner = 'X'
-    elif board[0][0] and board[1][0] and board[2][0] == 'O':
+    elif board[0][0] == 'O' and board[1][0] == 'O' and board[2][0] == 'O':
         winner = 'O'
-    elif board[0][1] and board[1][1] and board[2][1] == 'X':
+    elif board[0][1] == 'X' and board[1][1] == 'X' and board[2][1] == 'X':
         winner = 'X'
-    elif board[0][1] and board[1][1] and board[2][1] == 'O':
+    elif board[0][1] == 'O' and board[1][1] == 'O' and board[2][1] == 'O':
         winner = 'O'
-    elif board[0][2] and board[1][2] and board[2][2] == 'X':
+    elif board[0][2] == 'X' and board[1][2] == 'X' and board[2][2] == 'X':
         winner = 'X'
-    elif board[0][2] and board[1][2] and board[2][2] == 'O':
+    elif board[0][2] == 'O' and board[1][2] == 'O' and board[2][2] == 'O':
         winner = 'O'
-    elif board[0][0] and board[1][1] and board[2][2] == 'X':
+    elif board[0][0] == 'X' and board[1][1] == 'X' and board[2][2] == 'X':
         winner = 'X'
-    elif board[0][0] and board[1][1] and board[2][2] == 'O':
+    elif board[0][0] == 'O' and board[1][1] == 'O' and board[2][2] == 'O':
         winner = 'O'
-    elif board[0][2] and board[1][1] and board[2][0] == 'X':
+    elif board[0][2] == 'X' and board[1][1] == 'X' and board[2][0] == 'X':
         winner = 'X'
-    elif board[0][2] and board[1][1] and board[2][0] == 'O':
+    elif board[0][2] == 'O' and board[1][1] == 'O' and board[2][0] == 'O':
         winner = 'O'
     else:
         return False
     
     print(f'Player {winner} has won the game!')
-=======
-def mark(board, player, row, col):
-    board[row][col] = player
-    print_board(board)
-
-
-def has_won(board, player):
-    if board[0][0] and board[0][1] and board[0][2] == player:
-        winner = player
-    elif board[1][0] and board[1][1] and board[1][2] == player:
-        winner = player
-    elif board[2][0] and board[2][1] and board[2][2] == player:
-        winner = player
-    elif board[0][0] and board[1][0] and board[2][0] == player:
-        winner = player
-    elif board[0][1] and board[1][1] and board[1][2] == player:
-        winner = player
-    elif board[0][2] and board[1][1] and board[2][2] == player:
-        winner = player
-    elif board[0][0] and board[1][1] and board[2][2] == player:
-        winner = player
-    elif board[0][2] and board[1][1] and board[2][0] == player:
-        winner = player
-        
-    else:
-        return False
-    
-    
-
-def is_full(board):
-    if board[0][0] and board[0][1] and board[0][2] and board[1][0] and board[1][1] and board[1][2] and board[2][0] and board[2][1] and board[2][2] != '.':
-        print('Tie game, GAME OVER!')
-        return True
-    else:
-        return False
->>>>>>> a806abc6126938cb130ade3d82afd6f51a7769df
 
 
 def print_board(board):
@@ -173,31 +115,16 @@ def print_board(board):
 
 
 def print_result(winner):
-<<<<<<< HEAD
     """Congratulates winner or proclaims tie (if winner equals zero)."""
     pass 
 
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
-=======
-    print(f'Player {winner} has won the game')
-
-
-def change_player(player):
-    if player == 'X':
-        player = 'O'
-    else:
-        player = 'X'
-
-
-def tictactoe_game(mode):
->>>>>>> a806abc6126938cb130ade3d82afd6f51a7769df
     board = init_board()
     print_board(board)
     player = 'X'
-<<<<<<< HEAD
     while not is_full(board) or not has_won(board, player):
-        get_move(board, player)
+        #get_move(board, player)
         mark(board, player)
         print_board(board)
         if player == 'X':
@@ -215,15 +142,6 @@ def tictactoe_game(mode):
 
 
         
-=======
-    printed_board = print_board(board)
-    while is_full(board) is False and has_won(board, player) is False:
-        row, col = get_move(board, player)
-        mark(board, player, row, col)
-        player = change_player(player)
-    else:
-        print_result(winner)
->>>>>>> a806abc6126938cb130ade3d82afd6f51a7769df
     # winner = 0
     # print_result(winner)
 
