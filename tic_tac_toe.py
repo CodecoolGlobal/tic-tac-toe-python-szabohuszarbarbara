@@ -124,7 +124,6 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
     print_board(board)
     player = 'X'
     while not is_full(board) or not has_won(board, player):
-        get_move(board, player)
         mark(board, player)
         print_board(board)
         if player == 'X':
