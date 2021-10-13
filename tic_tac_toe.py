@@ -1,33 +1,57 @@
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
-    
     return board
 
+def is_full(board):
+    if board[0][0] and board[0][1] and board[0][2] and board[1][0] and board[1][1] and board[1][2] and board[2][0] and board[2][1] and board[2][2] != '.':
+        return True
+    else:
+        return False
+
+def moveValidation():
+    # ez így még nem tetszik
+    move = input("Please make a move!").upper()
+    for i in move:
+            while i not in "ABC123":
+                return False
+            else:
+                return True
 
 
 def get_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
-    move_input = input("Please make a move!")
-    if move_input == "A1":
-        move = board[0][0]
-    elif move_input == "A2":
-        move = board[0][1]
-    elif move_input == "A3":
-        move = board[0][2]
-    elif move_input == "B1":
-        move = board[1][0]
-    elif move_input == "B2":
-        move = board[1][1]
-    elif move_input == "B3":
-        move = board[1][2]
-    elif move_input == "C1":
-        move = board[2][0]
-    elif move_input == "C2":
-        move = board[2][1]
-    elif move_input == "C3":
-        move = board[2][2]
-    return move
+    move = input("Please make a move!").upper()
+    a = 0
+    b = 0
+    if move == "A1":
+        a = 0
+        b = 0
+    elif move == "A2":
+        a = 0
+        b = 1
+    elif move == "A3":
+        a = 0
+        b = 2
+    elif move == "B1":
+        a = 1
+        b = 0
+    elif move == "B2":
+        a = 1
+        b = 1
+    elif move == "B3":
+        a = 1
+        b = 2
+    elif move == "C1":
+        a = 2
+        b = 0
+    elif move == "C2":
+        a = 2
+        b = 1
+    elif move == "C3":
+        a = 2
+        b = 2
+    return a,b
+
 
 def get_ai_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
@@ -36,23 +60,47 @@ def get_ai_move(board, player):
 
 
 def mark(board, player):
-    board = init_board()
-    move = get_move(board, player)
-    move = player
-    return board
-        
+    x,y = get_move(board, player)    
+    board[x][y] = player
 
 
 def has_won(board, player):
-    """Returns True if player has won the game."""
-    return False
-
-
-def is_full(board):
-    if board[0][0] and board[0][1] and board[0][2] and board[1][0] and board[1][1] and board[1][2] and board[2][0] and board[2][1] and board[2][2] != '.':
-        return True
+    if board[0][0] and board[0][1] and board[0][2] == 'X':
+        winner = 'X'
+    elif board[0][0] and board[0][1] and board[0][2] == 'O':
+        winner = 'O'    
+    elif board[1][0] and board[1][1] and board[1][2] == 'X':
+        winner = 'X'
+    elif board[1][0] and board[1][1] and board[1][2] == 'O':
+        winner = 'O'
+    elif board[2][0] and board[2][1] and board[2][2] == 'X':
+        winner = 'X'
+    elif board[2][0] and board[2][1] and board[2][2] == 'O':
+        winner = 'O'
+    elif board[0][0] and board[1][0] and board[2][0] == 'X':
+        winner = 'X'
+    elif board[0][0] and board[1][0] and board[2][0] == 'O':
+        winner = 'O'
+    elif board[0][1] and board[1][1] and board[2][1] == 'X':
+        winner = 'X'
+    elif board[0][1] and board[1][1] and board[2][1] == 'O':
+        winner = 'O'
+    elif board[0][2] and board[1][2] and board[2][2] == 'X':
+        winner = 'X'
+    elif board[0][2] and board[1][2] and board[2][2] == 'O':
+        winner = 'O'
+    elif board[0][0] and board[1][1] and board[2][2] == 'X':
+        winner = 'X'
+    elif board[0][0] and board[1][1] and board[2][2] == 'O':
+        winner = 'O'
+    elif board[0][2] and board[1][1] and board[2][0] == 'X':
+        winner = 'X'
+    elif board[0][2] and board[1][1] and board[2][0] == 'O':
+        winner = 'O'
     else:
         return False
+    
+    print(f'Player {winner} has won the game!')
 
 
 def print_board(board):
@@ -68,27 +116,34 @@ def print_board(board):
 
 def print_result(winner):
     """Congratulates winner or proclaims tie (if winner equals zero)."""
-    pass
+    pass 
 
 
-def change_player(player):
-    if player == 'X':
-        player = 'O'
-    else:
-        player = 'X'
-
-
-def tictactoe_game(mode):
+def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
+    print_board(board)
     player = 'X'
-    # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
-    print_board(board)
-    move = get_move(board, player)
-    mark(board, "X")
-    print_board(board)
+    while not is_full(board) or not has_won(board, player):
+        get_move(board, player)
+        mark(board, player)
+        print_board(board)
+        if player == 'X':
+            player = 'O'
+        elif player == 'O':
+            player = 'X'
+        if has_won(board, "X"):
+            print("X won the game!")
+        elif has_won(board, "O"):
+            print("O won the game!")
+            break
+    if is_full(board):
+        print("It's a tie game")
+    
 
-    winner = 0
-    print_result(winner)
+
+        
+    # winner = 0
+    # print_result(winner)
 
 def add_game_mode():
     game_mode = input('''Select a game mode!
@@ -115,17 +170,26 @@ def valid_input_mode(game_mode):
         print('INVALID INPUT!')
         add_game_mode()
     else:
-        if game_mode == "1":
+        if game_mode == '1':
             tictactoe_game('HUMAN-HUMAN')
-        elif game_mode == "2":
+        elif game_mode == '2':
             tictactoe_game('HUMAN-AI')
-        elif game_mode == "3":
+        elif game_mode == '3':
             tictactoe_game('HUMAN-AI PRO')
-        elif game_mode == "4":
+        elif game_mode == '4':
             tictactoe_game('AI-AI')
         elif game_mode == 'Q' or 'q':
             quit()
 
+def main():
+    main_menu()
+    print_board(init_board())
+    while True:
+        get_move()
+        
+
 
 if __name__ == '__main__':
     main_menu()
+
+
