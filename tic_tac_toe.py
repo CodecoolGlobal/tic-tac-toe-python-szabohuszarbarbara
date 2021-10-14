@@ -123,15 +123,18 @@ def get_ai_move(board, player):
     return a,b
 
 
-def mark(board, player):
-    x, y = get_move(board, player)
-    if board[x][y] == ".":
-        board[x][y] = player
+# def mark(board, player):
+#     x, y = get_move(board, player)
+#     if board[x][y] == ".":
+#         board[x][y] = player
 
 def marking_AI(board, player):
     x, y = get_ai_move(board, player)
-    if board[x][y] == ".":
+    while board[x][y] != ".":
+        get_ai_move(board, player)
+    else:
         board[x][y] = player
+    
       
     
     
