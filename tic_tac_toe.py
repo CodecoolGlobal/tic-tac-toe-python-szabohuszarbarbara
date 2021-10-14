@@ -221,9 +221,7 @@ def tictactoe_game(mode=1):
 #             time.sleep(1)
 
     
-    # elif has_won(board, "O"):
-    #     print("O won the game!")
-    #     #break
+    
     if is_full(board) and not has_won(board, player):
         print("It's a tie game")
     
