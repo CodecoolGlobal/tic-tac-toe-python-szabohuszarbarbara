@@ -1,6 +1,8 @@
 import random
 import time
 
+lst = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
@@ -86,7 +88,7 @@ def new_list(move,lst):
 
 def get_ai_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
-    lst = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+    
     move = get_random_position(lst)
     new_list(move,lst)
     a = 0
@@ -245,7 +247,32 @@ def tictactoe_gameAI(mode):
         print("It's a tie game")
     
 
+def tictactoe_game_Human_AI(mode):
+    board = init_board()
+    print_board(board)
+    player = 'X'
+    while not is_full(board) and not has_won(board, player):
         
+        print_board(board)
+        if has_won(board, player):
+            print(f'{player} won the game!')
+            break
+        if player == 'X':
+            mark(board, player)
+            print_board(board)
+            player = 'O'
+            time.sleep(1)
+        elif player == 'O':
+            marking_AI(board, player)
+            print_board(board)
+            player = 'X'
+            time.sleep(1)
+
+    
+    
+    if is_full(board) and not has_won(board, player):
+        print("It's a tie game")
+           
     # winner = 0
     # print_result(winner)
 
@@ -253,9 +280,8 @@ def add_game_mode():
     game_mode = input('''Select a game mode!
 
     Press 1 for HUMAN - HUMAN
-    Press 2 for HUMAN - AI
-    Press 3 for HUMAN - AI PRO
-    Press 4 for AI -AI
+    Press 2 for AI - AI
+    Press 3 for HUMAN - AI
     
     For qutting the game type 'Q'
     ''')
@@ -279,9 +305,7 @@ def valid_input_mode(game_mode):
         elif game_mode == '2':
             tictactoe_gameAI(mode=2)
         elif game_mode == '3':
-            tictactoe_game('HUMAN-AI PRO')
-        elif game_mode == '4':
-            tictactoe_game('AI-AI')
+            tictactoe_game_Human_AI(mode=3)
         elif game_mode == 'Q' or 'q':
             quit()
 
