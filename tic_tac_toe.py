@@ -1,31 +1,34 @@
 import random
+<<<<<<< HEAD
+=======
 import time
 
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = [[".", ".", "."],[".", ".", "."],[".", ".", "."]]
     return board
 
 def is_full(board):
+<<<<<<< HEAD
+    if board[0][0] != '.' and board[0][1] != '.' and board[0][2] != '.' and board[1][0] != '.' and board[1][1] != '.' and board[1][2] != '.' and board[2][0] != '.' and board[2][1] != '.' and board[2][2] != '.':
+=======
     if board[0][0] != '.' and board[0][1] != '.' and board[0][2] != '.' and board[1][0] != '.' and board[1][1] != '.' and board[1][2] != '.' and board[2][0] != '.' and board[2][1] != '.' and  board[2][2] != '.':
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
         return True
     else:
         return False
-
-def moveValidation():
-    # ez így még nem tetszik
-    move = input("Please make a move!").upper()
-    for i in move:
-            while i not in "ABC123":
-                return False
-            else:
-                return True
 
 
 def get_move(board, player):
     move = input("Please make a move!").upper()
     a = 0
     b = 0
+    if move == "QUIT":
+        quit()
+    while move not in ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]:
+        print("Invalid move")
+        move = input("Please make a move!").upper()
     if move == "A1":
         a = 0
         b = 0
@@ -59,6 +62,29 @@ def get_move(board, player):
 #     move = random.choice(lst)
 #     return move
 
+<<<<<<< HEAD
+def get_ai_move(board, player):
+    all_moves = [(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2)]
+    move_index = []
+    x, y = get_move(board, player)
+    if (x,y) in all_moves:
+        all_moves.remove((x,y))
+    for i in range(len(all_moves)+1):
+        move_index.append(i)
+    next_move_index = random.choice(move_index)
+    next_ai_move = all_moves[next_move_index]
+    return next_ai_move
+
+
+def mark(board, player):
+    x,y = get_move(board, player)
+    if board[x][y] == ".":    
+        board[x][y] = player
+    else:
+        print("This field is taken!")
+        print(f"{player}'s turn")
+        get_move(board,player)
+=======
 # def new_list(move,lst):
 #     while len(lst) > 0:
 #         lst.pop(lst.index(move))
@@ -100,6 +126,7 @@ def get_move(board, player):
 #         a = 2
 #         b = 2
 #     return a,b
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
 
 
 def mark(board, player):
@@ -129,7 +156,10 @@ def has_won(board, player):
         return winner
     elif board[2][0] == 'X' and board[2][1] == 'X' and board[2][2] == 'X':
         winner = 'X'
+<<<<<<< HEAD
+=======
         return winner
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
     elif board[2][0] == 'O' and board[2][1] == 'O' and board[2][2] == 'O':
         winner = 'O'
         return winner
@@ -168,8 +198,12 @@ def has_won(board, player):
         return False
     
     print(f'Player {winner} has won the game!')
+<<<<<<< HEAD
+    return winner
+=======
     return True
 
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
 
 def print_board(board):
     """Prints a 3-by-3 board on the screen with borders."""
@@ -182,12 +216,16 @@ def print_board(board):
     C  {board[2][0]} | {board[2][1]} | {board[2][2]}\n""")
 
 
+<<<<<<< HEAD
+def tictactoe_game(mode='HUMAN-HUMAN'):
+=======
 def print_result(winner):
     """Congratulates winner or proclaims tie (if winner equals zero)."""
     pass 
 
 
 def tictactoe_game(mode=1):
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
     board = init_board()
     print_board(board)
     player = 'X'
@@ -199,8 +237,15 @@ def tictactoe_game(mode=1):
             break
         if player == 'X':
             player = 'O'
+            print("O's turn\n")
         elif player == 'O':
             player = 'X'
+<<<<<<< HEAD
+            print("X's turn\n")
+
+    if is_full(board) and not has_won(board, player):
+        print("It's a tie")
+=======
     #if has_won(board, player) and not is_full(board):
 
 # def tictactoe_game(mode=2):
@@ -225,6 +270,7 @@ def tictactoe_game(mode=1):
     if is_full(board) and not has_won(board, player):
         print("It's a tie game")
     
+>>>>>>> 91a5c42a9ae90259ec484c2fb8dceea18611d9be
 
         
     # winner = 0
