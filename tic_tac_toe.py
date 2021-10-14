@@ -132,11 +132,9 @@ def marking_AI(board, player):
     x, y = get_ai_move(board, player)
     while board[x][y] != ".":
         get_ai_move(board, player)
-    else:
-        board[x][y] = player
-    
-      
-    
+        break
+    board[x][y] = player
+     
     
 def has_won(board, player):
     if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == 'X':
@@ -255,8 +253,7 @@ def tictactoe_game_Human_AI(mode):
     print_board(board)
     player = 'X'
     while not is_full(board) and not has_won(board, player):
-        
-        print_board(board)
+     
         if has_won(board, player):
             print(f'{player} won the game!')
             break
