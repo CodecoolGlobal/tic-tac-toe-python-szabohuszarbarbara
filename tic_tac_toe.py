@@ -81,7 +81,7 @@ def mark(board, player):
 def new_list(move,lst):
     while len(lst) > 0:
         lst.pop(lst.index(move))
-    return lst
+        return lst
 
 
 def get_ai_move(board, player):
