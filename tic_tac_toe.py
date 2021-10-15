@@ -2,6 +2,7 @@ import random
 import time
 
 lst = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+'''valid coordinates as a list name(more described)'''
 
 
 def init_board():
@@ -24,6 +25,7 @@ def get_move(board, player):
     if move == "QUIT":
         quit()
     while move not in ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]:
+        '''redundant list'''
         print("Invalid move")
         move = input("Please make a move!").upper()
     if move == "A1":
@@ -122,7 +124,22 @@ def marking_AI(board, player):
         if board[x][y] == '.':
             board[x][y] = player
             break
-     
+
+def has_won1(board, player):
+    for row in board:
+        if row[0] == player and row[1] == player and row[2] == player:
+            return True
+    for col_i in range(len(board)):
+        if board[0][col_i] == player and board[1][col_i] == player and board[2][col_i] == player:
+            return True
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        return True
+    if board[2][0] == player and board[1][1] == player and board[0][2] == player:
+        return True
+
+    return False
+
+
 def has_won(board, player):
     if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == 'X':
         winner = 'X'
@@ -206,26 +223,25 @@ def print_board(board):
     C  {board[2][0]} | {board[2][1]} | {board[2][2]}\n""")
 
 
-def tictactoe_game(mode=1):
+def tictactoe_game():
     board = init_board()
     print_board(board)
     player = 'X'
-    while not is_full(board) and not has_won(board, player):
+    while True:
         mark(board, player)
         print_board(board)
-        if has_won(board, player):
+        if has_won1(board, player):
+            print(f'Player {player} has won the game!')
             break
-        if player == 'X':
-            player = 'O'
-            print("O's turn\n")
-        elif player == 'O':
-            player = 'X'
-            print("X's turn\n")
+        if is_full(board):
+            print("It's a tie")
+            break
+        player = 'X' if player == 'O' else 'O'
+        print(f"{player}'s turn\n")
+        
+    
 
-    if is_full(board) and not has_won(board, player):
-        print("It's a tie")
-
-def tictactoe_gameAI(mode):
+def tictactoe_gameAI():
     board = init_board()
     print_board(board)
     player = 'X'
@@ -236,10 +252,10 @@ def tictactoe_gameAI(mode):
             break
         if player == 'X':
             player = 'O'
-            time.sleep(1)
+            
         elif player == 'O':
             player = 'X'
-            time.sleep(1)
+        time.sleep(1)
 
     
     
@@ -247,7 +263,7 @@ def tictactoe_gameAI(mode):
         print("It's a tie game")
     
 
-def tictactoe_game_Human_AI(mode):
+def tictactoe_game_Human_AI():
     board = init_board()
     print_board(board)
     player = 'X'
@@ -273,6 +289,7 @@ def tictactoe_game_Human_AI(mode):
            
 
 def add_game_mode():
+    '''rather choose_game_mode'''
     game_mode = input('''Select a game mode!
 
     Press 1 for HUMAN - HUMAN
@@ -311,11 +328,11 @@ def valid_input_mode(game_mode):
         add_game_mode()
     else:
         if game_mode == '1':
-            tictactoe_game(mode=1)
+            tictactoe_game()
         elif game_mode == '2':
-            tictactoe_gameAI(mode=2)
+            tictactoe_gameAI()
         elif game_mode == '3':
-            tictactoe_game_Human_AI(mode=3)
+            tictactoe_game_Human_AI()
         elif game_mode == 'Q' or 'q':
             quit()
 
